@@ -1,6 +1,7 @@
-# boards.txt (Version 5 - Corrected SDK Include Paths)
+# boards.txt (Version 5 - Explicit "Brute Force" Include Paths)
 #
-# This file defines the Grove AI Vision V2 board for the Arduino IDE.
+# This version explicitly lists every single required include directory from the SDK
+# to ensure the compiler can find all necessary header files.
 #
 #########################################################################
 
@@ -13,9 +14,8 @@ grove_vision_ai_v2.build.f_cpu=400000000L
 grove_vision_ai_v2.build.core=arduino
 grove_vision_ai_v2.build.variant=grove_vision_ai_v2
 
-# All board-specific compiler flags, including include paths for the core and SDK.
-# CORRECTED: Added missing paths for CMSIS and the SDK root to allow internal includes to work.
-grove_vision_ai_v2.build.extra_flags=-DARDUINO_ARCH_HIMAX_WE2 -DCFG_BOARD_HIMAX_WE2_V1 -I{build.core.path} -I{build.variant.path} -I{build.sdk.path} -I{build.cmsis.path}/Core/Include
+# All board-specific compiler flags, with explicit paths for every SDK subdirectory.
+grove_vision_ai_v2.build.extra_flags=-DARDUINO_ARCH_HIMAX_WE2 -DCFG_BOARD_HIMAX_WE2_V1 -I{build.core.path} -I{build.variant.path} -I{build.core.path}/sdk/board/HIMAX_WE2_V1 -I{build.core.path}/sdk/common/inc -I{build.core.path}/sdk/driver/inc -I{build.core.path}/sdk/security/inc -I{build.core.path}/sdk/device -I{build.core.path}/sdk/device/inc -I{build.core.path}/sdk/os/inc -I{build.core.path}/sdk/CMSIS/Core/Include -I{build.core.path}/sdk/CMSIS/DSP/Include -I{build.core.path}/sdk/CMSIS/NN/Include
 
 # Memory Sizes
 grove_vision_ai_v2.upload.maximum_size=2097152
