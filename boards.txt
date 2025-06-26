@@ -1,0 +1,35 @@
+# boards.txt (Version 4 - Corrected SDK Include Paths)
+#
+# This file defines the Grove AI Vision V2 board for the Arduino IDE.
+#
+#########################################################################
+
+# Grove AI Vision V2 Board Definition
+grove_vision_ai_v2.name=Grove AI Vision V2
+
+grove_vision_ai_v2.build.board=HIMAX_WE2
+grove_vision_ai_v2.build.mcu=cortex-m55
+grove_vision_ai_v2.build.f_cpu=400000000L
+grove_vision_ai_v2.build.core=arduino
+grove_vision_ai_v2.build.variant=grove_vision_ai_v2
+
+# All board-specific compiler flags, including include paths for the core and SDK.
+# This version provides the root directories, allowing the SDK's own relative
+# includes to function correctly.
+grove_vision_ai_v2.build.extra_flags=-DARDUINO_ARCH_HIMAX_WE2 -DCFG_BOARD_HIMAX_WE2_V1 -I{build.core.path} -I{build.variant.path} -I{build.core.path}/sdk/
+
+# Memory Sizes
+grove_vision_ai_v2.upload.maximum_size=2097152
+grove_vision_ai_v2.upload.maximum_data_size=524288
+
+# Upload settings
+grove_vision_ai_v2.upload.tool=flasher
+grove_vision_ai_v2.upload.protocol=xmodem
+grove_vision_ai_v2.upload.speed=921600
+grove_vision_ai_v2.upload.require_upload_port=true
+grove_vision_ai_v2.upload.use_1200bps_touch=false
+grove_vision_ai_v2.upload.wait_for_upload_port=false
+
+# USB VID/PID
+grove_vision_ai_v2.build.vid=0x1A86
+grove_vision_ai_v2.build.pid=0x5740
