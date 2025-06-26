@@ -1,0 +1,6 @@
+-lstdc++
+-lsupc++
+-lm
+-lc
+-lgcc
+-lnosys

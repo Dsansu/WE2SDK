@@ -1,0 +1,7 @@
+-std=gnu11
+-Wall
+-Wextra
+-fdata-sections
+-ffunction-sections
+-fmessage-length=0
+-fomit-frame-pointer

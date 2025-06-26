@@ -1,0 +1,12 @@
+-I{build.core.path}
+-I{build.variant.path}
+-I{build.core.path}/sdk/board/epii_evb
+-I{build.core.path}/sdk/board/epii_evb/config
+-I{build.core.path}/sdk/common/inc
+-I{build.core.path}/sdk/drivers/inc
+-I{build.core.path}/sdk/drivers/seconly_inc
+-I{build.core.path}/sdk/security/inc
+-I{build.core.path}/sdk/device/inc
+-I{build.core.path}/sdk/os/freertos_10_5_1/NTZ/freertos_kernel/include
+-I{build.core.path}/sdk/os/freertos_10_5_1/NTZ/config
+-I{build.core.path}/CMSIS/Core/Include

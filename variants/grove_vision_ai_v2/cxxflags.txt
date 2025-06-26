@@ -1,0 +1,10 @@
+-std=gnu++14
+-fno-rtti
+-fno-exceptions
+-Wvla
+-Wall
+-Wextra
+-fdata-sections
+-ffunction-sections
+-fmessage-length=0
+-fomit-frame-pointer

@@ -1,7 +1,6 @@
-# boards.txt (Version 10 - Corrected CMSIS Pathing)
+# boards.txt (Version 15 - Based on Portenta H7 Architecture)
 #
-# This version corrects the location of the core ARM CMSIS headers,
-# which is the root cause of the 'core_cm55.h not found' error.
+# All build logic has been moved to platform.txt and the variant's response files.
 #
 #########################################################################
 
@@ -14,20 +13,14 @@ grove_vision_ai_v2.build.f_cpu=400000000L
 grove_vision_ai_v2.build.core=arduino
 grove_vision_ai_v2.build.variant=grove_vision_ai_v2
 
-# All board-specific compiler flags, with the corrected top-level CMSIS path.
-grove_vision_ai_v2.build.extra_flags=-DARDUINO_ARCH_HIMAX_WE2 -DCFG_BOARD_HIMAX_WE2_V1 -I{build.core.path} -I{build.variant.path} -I{build.core.path}/sdk/board/epii_evb -I{build.core.path}/sdk/board/epii_evb/config -I{build.core.path}/sdk/common/inc -I{build.core.path}/sdk/drivers/inc -I{build.core.path}/sdk/drivers/seconly_inc -I{build.core.path}/sdk/security/inc -I{build.core.path}/sdk/device/inc -I{build.core.path}/sdk/os/freertos_10_5_1/NTZ/freertos_kernel/include -I{build.core.path}/sdk/os/freertos_10_5_1/NTZ/config -I{build.core.path}/CMSIS/Core/Include
-
 # Memory Sizes
 grove_vision_ai_v2.upload.maximum_size=2097152
 grove_vision_ai_v2.upload.maximum_data_size=524288
 
 # Upload settings
 grove_vision_ai_v2.upload.tool=flasher
-grove_vision_ai_v2.upload.protocol=xmodem
 grove_vision_ai_v2.upload.speed=921600
 grove_vision_ai_v2.upload.require_upload_port=true
-grove_vision_ai_v2.upload.use_1200bps_touch=false
-grove_vision_ai_v2.upload.wait_for_upload_port=false
 
 # USB VID/PID
 grove_vision_ai_v2.build.vid=0x1A86
