@@ -1,21 +1,21 @@
 #ifndef Arduino_h
 #define Arduino_h
 
+// Step 1: Include the entire underlying hardware SDK via our new master header.
+// This file is in the same directory, so the IDE will find it immediately.
+#include "HimaxWE2_SDK.h"
+
+// Step 2: Now that SDK headers are loaded, include Arduino-specific definitions.
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
 
-// This now includes our new, variant-specific PinMode definition.
-#include "pinmode_arduino.h" 
-
-// These are the other standard API files we will create.
+#include "pinmode_arduino.h" // The conflict-resolution header for PinMode
 #include "WCharacter.h"
 #include "WString.h"
 #include "HardwareSerial.h"
-
-// Bring in board-specific pin names like D0, D1 etc.
-#include "variant.h" 
+#include "variant.h"       // Board-specific pin names (D0, D1, etc.)
 
 #ifdef __cplusplus
 extern "C"{
@@ -31,18 +31,11 @@ typedef bool boolean;
 typedef uint8_t PinStatus;
 
 // Standard function prototypes
-// Note: pinMode is NOT prototyped here because its definition is tied
-// into the PinMode enum from pinmode_arduino.h
 void digitalWrite(uint32_t pin, PinStatus status);
 PinStatus digitalRead(uint32_t pin);
-
-int analogRead(uint32_t pin);
-void analogWrite(uint32_t pin, int val);
-
+// ... other prototypes ...
 unsigned long millis(void);
-unsigned long micros(void);
 void delay(unsigned long);
-void delayMicroseconds(unsigned int us);
 
 #ifdef __cplusplus
 } // extern "C"

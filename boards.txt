@@ -1,7 +1,7 @@
-# boards.txt (Version 5 - Explicit "Brute Force" Include Paths)
+# boards.txt (Version 10 - Corrected CMSIS Pathing)
 #
-# This version explicitly lists every single required include directory from the SDK
-# to ensure the compiler can find all necessary header files.
+# This version corrects the location of the core ARM CMSIS headers,
+# which is the root cause of the 'core_cm55.h not found' error.
 #
 #########################################################################
 
@@ -14,8 +14,8 @@ grove_vision_ai_v2.build.f_cpu=400000000L
 grove_vision_ai_v2.build.core=arduino
 grove_vision_ai_v2.build.variant=grove_vision_ai_v2
 
-# All board-specific compiler flags, with explicit paths for every SDK subdirectory.
-grove_vision_ai_v2.build.extra_flags=-DARDUINO_ARCH_HIMAX_WE2 -DCFG_BOARD_HIMAX_WE2_V1 -I{build.core.path} -I{build.variant.path} -I{build.core.path}/sdk/board/HIMAX_WE2_V1 -I{build.core.path}/sdk/common/inc -I{build.core.path}/sdk/driver/inc -I{build.core.path}/sdk/security/inc -I{build.core.path}/sdk/device -I{build.core.path}/sdk/device/inc -I{build.core.path}/sdk/os/inc -I{build.core.path}/sdk/CMSIS/Core/Include -I{build.core.path}/sdk/CMSIS/DSP/Include -I{build.core.path}/sdk/CMSIS/NN/Include
+# All board-specific compiler flags, with the corrected top-level CMSIS path.
+grove_vision_ai_v2.build.extra_flags=-DARDUINO_ARCH_HIMAX_WE2 -DCFG_BOARD_HIMAX_WE2_V1 -I{build.core.path} -I{build.variant.path} -I{build.core.path}/sdk/board/epii_evb -I{build.core.path}/sdk/board/epii_evb/config -I{build.core.path}/sdk/common/inc -I{build.core.path}/sdk/drivers/inc -I{build.core.path}/sdk/drivers/seconly_inc -I{build.core.path}/sdk/security/inc -I{build.core.path}/sdk/device/inc -I{build.core.path}/sdk/os/freertos_10_5_1/NTZ/freertos_kernel/include -I{build.core.path}/sdk/os/freertos_10_5_1/NTZ/config -I{build.core.path}/CMSIS/Core/Include
 
 # Memory Sizes
 grove_vision_ai_v2.upload.maximum_size=2097152
