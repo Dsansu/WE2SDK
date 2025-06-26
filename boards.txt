@@ -1,4 +1,4 @@
-# boards.txt (Version 4 - Corrected SDK Include Paths)
+# boards.txt (Version 5 - Corrected SDK Include Paths)
 #
 # This file defines the Grove AI Vision V2 board for the Arduino IDE.
 #
@@ -14,9 +14,8 @@ grove_vision_ai_v2.build.core=arduino
 grove_vision_ai_v2.build.variant=grove_vision_ai_v2
 
 # All board-specific compiler flags, including include paths for the core and SDK.
-# This version provides the root directories, allowing the SDK's own relative
-# includes to function correctly.
-grove_vision_ai_v2.build.extra_flags=-DARDUINO_ARCH_HIMAX_WE2 -DCFG_BOARD_HIMAX_WE2_V1 -I{build.core.path} -I{build.variant.path} -I{build.core.path}/sdk/
+# CORRECTED: Added missing paths for CMSIS and the SDK root to allow internal includes to work.
+grove_vision_ai_v2.build.extra_flags=-DARDUINO_ARCH_HIMAX_WE2 -DCFG_BOARD_HIMAX_WE2_V1 -I{build.core.path} -I{build.variant.path} -I{build.sdk.path} -I{build.cmsis.path}/Core/Include
 
 # Memory Sizes
 grove_vision_ai_v2.upload.maximum_size=2097152

@@ -1,10 +1,13 @@
-# platform.txt (Version 6 - Final)
+# platform.txt (Version 7 - Final)
 name=Himax WE2 Boards (Community)
 version=0.1.0
 
 # Build variables
 build.core.path={runtime.platform.path}/cores/{build.core}
+# CORRECTED: variant.path should be relative to the platform path, not the core path.
 build.variant.path={runtime.platform.path}/variants/{build.variant}
+build.sdk.path={build.core.path}/sdk
+build.cmsis.path={build.sdk.path}/CMSIS
 
 # Compiler settings
 compiler.path={runtime.tools.arm-none-eabi-gcc.path}/bin/
@@ -21,10 +24,11 @@ compiler.c.elf.cmd=arm-none-eabi-g++
 compiler.c.elf.flags=-Os -Wl,--gc-sections -mcpu=cortex-m55 -mthumb -mfloat-abi=hard -mfpu=fpv5-d16 -nostartfiles -Wl,--defsym=__STACK_SIZE=0x1000 -Wl,--defsym=__STACK_LIMIT=0x10000000 -Wl,--defsym=__HEAP_SIZE=0x40000 -Wl,--defsym=__ROM_START=0x10000000 -Wl,--defsym=__ROM_SIZE=0x200000 -Wl,--defsym=__RAM_START=0x30000000 -Wl,--defsym=__RAM_SIZE=0x80000
 
 # Build Recipes
-recipe.c.o.pattern="{compiler.path}{compiler.c.cmd}" {compiler.c.flags} -DARDUINO={runtime.ide.version} -DARDUINO_{build.board} -DARDUINO_ARCH_{build.arch} {build.extra_flags} {includes} "{source_file}" -o "{object_file}"
-recipe.cpp.o.pattern="{compiler.path}{compiler.cpp.cmd}" {compiler.cpp.flags} -DARDUINO={runtime.ide.version} -DARDUINO_{build.board} -DARDUINO_ARCH_{build.arch} {build.extra_flags} {includes} "{source_file}" -o "{object_file}"
+recipe.c.o.pattern="{compiler.path}{compiler.c.cmd}" {compiler.c.flags} -DARDUINO={runtime.ide.version} -DARDUINO_{build.board} -DARDUINO_ARCH_{build.arch} {build.extra_flags} "{source_file}" -o "{object_file}"
+recipe.cpp.o.pattern="{compiler.path}{compiler.cpp.cmd}" {compiler.cpp.flags} -DARDUINO={runtime.ide.version} -DARDUINO_{build.board} -DARDUINO_ARCH_{build.arch} {build.extra_flags} "{source_file}" -o "{object_file}"
 recipe.ar.pattern="{compiler.path}{compiler.ar.cmd}" rcs "{archive_file_path}" "{object_file}"
-recipe.c.combine.pattern="{compiler.path}{compiler.c.elf.cmd}" {compiler.c.elf.flags} -Wl,-T,{build.core.path}/sdk/board/HIMAX_WE2_V1/HIMAX_WE2_V1.ld "-Wl,-Map,{build.path}/{build.project_name}.map" -o "{build.path}/{build.project_name}.elf" "-L{build.path}" -Wl,--start-group {object_files} "{archive_file_path}" -Wl,--end-group -lstdc++ -lsupc++ -lm -lc -lnosys
+# CORRECTED: Added linker search path to find the correct linker script.
+recipe.c.combine.pattern="{compiler.path}{compiler.c.elf.cmd}" {compiler.c.elf.flags} -L{build.variant.path} -Tlinker_script.ld "-Wl,-Map,{build.path}/{build.project_name}.map" -o "{build.path}/{build.project_name}.elf" "-L{build.path}" -Wl,--start-group {object_files} "{archive_file_path}" -Wl,--end-group -lstdc++ -lsupc++ -lm -lc -lnosys
 recipe.objcopy.bin.pattern="{compiler.path}{compiler.elf2bin.cmd}" {compiler.elf2bin.flags} "{build.path}/{build.project_name}.elf" "{build.path}/{build.project_name}.bin"
 recipe.size.pattern="{compiler.path}{compiler.size.cmd}" -A "{build.path}/{build.project_name}.elf"
 
